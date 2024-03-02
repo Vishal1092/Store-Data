@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header >
+        <a href="saveData.html"><button>Save data</a></button>
+        <a href="showData.html" ><button >Show Data</a></button>
+        
+    </header>
+    <form>
+        <label>Name:</label><br><br>
+        <input type="text" placeholder="*Enter Your Name" id="name"><br><br>
+      
+        <label>Age:</label><br><br>
+        <input type="number" placeholder="*Enter Your Age" id="age"><br><br>
+      
+        <label>Email:</label><br><br>
+        <input type="email" placeholder="*Enter Your Emaiu ID" id="emailid"><br><br>
+      
+        <label>Image:</label><br><br>
+        <input type="url" id="imageurl"><br><br>
+   
+        <input type="submit">
+    
+    </form> 
+</body>
+</html>
+<script>
+   const myForm = document.querySelector('form')
+   console.log(myForm)
+   myForm.addEventListener('submit',savedata)
+
+function savedata(e){
+    e.preventDefault()
+  
+    let name = document.getElementById('name').value
+
+    let age = document.getElementById('age').value
+ 
+    let email = document.getElementById('emailid').value
+  
+    let url = document.getElementById('imageurl').value
+
+
+    const data = {
+        dname: name,
+        dage:age,
+        demail:email,
+        durl: url
+    }
+    console.log(data)
+   
+    const arr =JSON.parse(localStorage.getItem('collection') )||[];
+    arr.push(data)
+    
+    localStorage.setItem('collection',JSON.stringify(arr))
+    alert('data is saved')
+   
+}
+
+</script>

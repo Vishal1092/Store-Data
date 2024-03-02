@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+      
+    <nav>
+        <a href="saveData.html" ><button>Save data</a></button>     
+     <a href="showData.html"><button onclick="DisplayData()">Show Data</a></button>
+  
+    </nav>
+</header>
+    <h2>Display Data </h2>
+    <div id="box">
+
+    </div >
+</body>
+</html>
+<script>
+    function DisplayData(){
+        
+        const container = document.querySelector('#box')
+      
+        let value = JSON.parse(localStorage.getItem('collection'))
+        console.log(value)
+
+       if(value.length > 0){
+        value.forEach(function(details) {
+        const  box = document.createElement('div')
+        const Name = document.createElement("p")
+        const Age = document.createElement("p")
+        const Email = document.createElement("p")
+        const Image = document.createElement("img")
+        const Hr = document.createElement("hr")
+
+        Name.textContent = "Name: " + details.dname;
+        Age.textContent = "Age: " + details.dage;
+        Email.textContent = "Email: " + details.demail;
+        Image.src = details.durl;
+
+        box.append(Name,Age,Email,Image)
+        container.appendChild(box)
+       });
+        }else{
+        container.innerHTML= "<p>No Data Is Found </P>";
+        }  
+       }
+       DisplayData()
+    
+</script>
